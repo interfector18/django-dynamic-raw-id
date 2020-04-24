@@ -9,10 +9,21 @@
 <form method="GET" action="">
     <script type="text/javascript" src="{% url 'admin:jsi18n' %}"></script>
     {{ spec.form.media }}
-    <div class="DynamicRawIDFilter">
-        {{ spec.form.as_p }}
-    </div>
-    <p>
-    <input type="submit" value="{% trans "Search" %}">
-    </p>
+
+    {# other filters #}
+    {% with choices.0 as other_choices %}
+      {% for k, v in other_choices.query_pairs %}
+        <input type="hidden" name="{{ k }}" value="{{ v }}" />
+      {% endfor %}
+    {% endwith %}
+
+    <ul>
+      <li>
+        <div class="DynamicRawIDFilter">
+            {{ spec.form.as_p }}
+        </div>
+        <input type="submit" class="dynamic_raw_id_button" value="{% trans 'Search' %}" />
+        <a href="?{{ spec.reset_query }}" class="input_filter_button dynamic_raw_id_button button">Reset</a>
+      </li>
+    </ul>
 </form>

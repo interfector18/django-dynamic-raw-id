@@ -4,6 +4,7 @@
 
 from django import forms
 from django.contrib import admin
+from django.utils.http import urlencode
 
 from dynamic_raw_id.widgets import DynamicRawIDWidget
 
@@ -36,10 +37,20 @@ class DynamicRawIDFilter(admin.filters.FieldListFilter):
         )
         rel = field.remote_field
         self.form = self.get_form(request, rel, model_admin.admin_site)
+        self.request = request
 
-    def choices(self, cl):
-        """Filter choices are not available."""
-        return []
+    def choices(self, changelist):
+        """
+        Using this to catch all other applied filters
+        """
+        other_choices = {
+            'query_pairs': (
+                (k, v)
+                for k, v in changelist.get_filters_params().items()
+                if k != self.lookup_kwarg
+            ),
+        }
+        yield other_choices
 
     def expected_parameters(self):
         """Return GET params for this filter."""
@@ -63,3 +74,12 @@ class DynamicRawIDFilter(admin.filters.FieldListFilter):
             )
             return queryset.filter(**filter_params)
         return queryset
+
+    def reset_query(self):
+        param = self.lookup_kwarg
+        query = {
+            key: val
+            for key, val in self.request.GET.items()
+            if key != param
+        }
+        return urlencode(query)
