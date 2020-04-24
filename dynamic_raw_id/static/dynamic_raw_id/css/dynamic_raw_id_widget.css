@@ -1,3 +1,9 @@
+/* align text vertically */
+.dynamic_raw_id-widget-wrapper {
+  display: inline-block;
+  padding-top: 4px;
+}
+
 /* hide edit edit and delete icons next ot field */
 .dynamic_raw_id-widget-wrapper ~ .change-related,
 .dynamic_raw_id-widget-wrapper ~ .delete-related {
@@ -13,4 +19,25 @@
 /* hide the actual input */
 .dynamic_raw_id-widget-wrapper > input {
   display: none;
+}
+
+
+/*** filter ***/
+
+/* slim the search button */
+#changelist-filter .dynamic_raw_id_button {
+  padding: 4px 5px;
+  color: #fff;
+  display: inline-block;
+  line-height: normal;
+}
+
+/* hide the red X icon, we have a reset button */
+#changelist-filter .dynamic_raw_id-clear-field {
+  display: none !important;
+}
+
+/* extra padding not needed n filter */
+#changelist-filter .dynamic_raw_id-widget-wrapper .dynamic_raw_id_label {
+  padding-top: 0;
 }

@@ -22,6 +22,13 @@ class DynamicRawIDFilterForm(forms.Form):
             required=False,
         )
 
+    class Media:
+        css = {
+            "all": (
+                "dynamic_raw_id/css/dynamic_raw_id_widget.css",
+            )
+        }
+
 
 class DynamicRawIDFilter(admin.filters.FieldListFilter):
 
