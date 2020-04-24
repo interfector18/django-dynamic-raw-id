@@ -1,7 +1,8 @@
 {% load static %}
 {% load i18n %}
 
-{% include 'django/forms/widgets/input.html' %}
+<span class="dynamic_raw_id-widget-wrapper">
+  {% include 'django/forms/widgets/input.html' %}
 
 <a href="{{ related_url }}{{ url }}"
    data-name="{{ name }}"

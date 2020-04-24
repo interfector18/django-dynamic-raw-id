@@ -22,3 +22,10 @@ class DynamicRawIDMixin(object):
         return super(DynamicRawIDMixin, self).formfield_for_manytomany(
             db_field, request, **kwargs
         )
+
+    class Media:
+        css = {
+            "all": (
+                "dynamic_raw_id/css/dynamic_raw_id_widget.css",
+            )
+        }

@@ -1,0 +1,16 @@
+/* hide edit edit and delete icons next ot field */
+.dynamic_raw_id-widget-wrapper ~ .change-related,
+.dynamic_raw_id-widget-wrapper ~ .delete-related {
+  display: none;
+}
+
+/* move label before icons */
+.dynamic_raw_id-widget-wrapper .dynamic_raw_id_label {
+  float: left;
+  padding: 3px 6px 0 0;
+}
+
+/* hide the actual input */
+.dynamic_raw_id-widget-wrapper > input {
+  display: none;
+}
