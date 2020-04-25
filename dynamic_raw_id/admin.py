@@ -1,7 +1,10 @@
+from django import VERSION
+from django.forms import MediaDefiningClass
+
 from dynamic_raw_id.widgets import DynamicRawIDMultiIdWidget, DynamicRawIDWidget
 
 
-class DynamicRawIDMixin(object):
+class DynamicRawIDMixin(metaclass=MediaDefiningClass):
     dynamic_raw_id_fields = ()
 
     def formfield_for_foreignkey(self, db_field, request=None, **kwargs):
