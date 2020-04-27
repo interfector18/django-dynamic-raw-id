@@ -4,6 +4,7 @@
 
 from django import forms
 from django.contrib import admin
+from django.contrib.admin.options import TO_FIELD_VAR, IS_POPUP_VAR
 from django.utils.http import urlencode
 
 from dynamic_raw_id.widgets import DynamicRawIDWidget
@@ -51,12 +52,16 @@ class DynamicRawIDFilter(admin.filters.FieldListFilter):
         Using this to catch all other applied filters
         """
         other_choices = {
-            'query_pairs': (
+            'query_pairs': [
                 (k, v)
                 for k, v in changelist.get_filters_params().items()
                 if k != self.lookup_kwarg
-            ),
+            ],
         }
+        for var in (TO_FIELD_VAR, IS_POPUP_VAR):
+            if var in self.request.GET:
+                other_choices["query_pairs"].append(
+                    (var, self.request.GET[var]))
         yield other_choices
 
     def expected_parameters(self):
