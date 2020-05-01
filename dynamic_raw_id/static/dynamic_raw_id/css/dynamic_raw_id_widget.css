@@ -22,22 +22,12 @@
 }
 
 
-/*** filter ***/
-
-/* slim the search button */
-#changelist-filter .dynamic_raw_id_button {
-  padding: 4px 5px;
-  color: #fff;
-  display: inline-block;
-  line-height: normal;
-}
-
-/* hide the red X icon, we have a reset button */
-#changelist-filter .dynamic_raw_id-clear-field {
-  display: none !important;
-}
+/** admin filter **/
 
 /* extra padding not needed n filter */
+#changelist-filter .DynamicRawIDFilter > p {
+  padding-left: 0;
+}
 #changelist-filter .dynamic_raw_id-widget-wrapper .dynamic_raw_id_label {
-  padding-top: 0;
+  padding-left: 1px;
 }

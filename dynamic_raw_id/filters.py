@@ -29,6 +29,9 @@ class DynamicRawIDFilterForm(forms.Form):
                 "dynamic_raw_id/css/dynamic_raw_id_widget.css",
             )
         }
+        js = (
+            "dynamic_raw_id/js/filter.js",
+        )
 
 
 class DynamicRawIDFilter(admin.filters.FieldListFilter):
