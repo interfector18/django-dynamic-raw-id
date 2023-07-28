@@ -17,7 +17,7 @@ class DynamicRawIDFilterForm(forms.Form):
     def __init__(self, rel, admin_site, field_name, **kwargs):
         """Construct field for given field rel."""
         super(DynamicRawIDFilterForm, self).__init__(**kwargs)
-        self.fields["%s" % field_name] = forms.IntegerField(
+        self.fields["%s__id" % field_name] = forms.CharField(
             label="",
             widget=DynamicRawIDWidget(rel=rel, admin_site=admin_site),
             required=False,
@@ -42,7 +42,7 @@ class DynamicRawIDFilter(admin.filters.FieldListFilter):
 
     def __init__(self, field, request, params, model, model_admin, field_path):
         """Use GET param for lookup and form initialization."""
-        self.lookup_kwarg = "%s" % field_path
+        self.lookup_kwarg = "%s__id" % field_path
         super(DynamicRawIDFilter, self).__init__(
             field, request, params, model, model_admin, field_path
         )
